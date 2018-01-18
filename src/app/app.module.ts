@@ -10,6 +10,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthParticipantPageModule } from '../pages/auth-participant/auth-participant.module';
+import { SponsorerPageModule } from '../pages/sponsorer/sponsorer.module';
+import { NotaryPageModule } from '../pages/notary/notary.module';
+import { AuthParticipantPage } from '../pages/auth-participant/auth-participant';
+import { SponsorerPage } from '../pages/sponsorer/sponsorer';
+import { NotaryPage } from '../pages/notary/notary';
+import { SharedServie } from '../shared/shared.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +29,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    AuthParticipantPageModule,
+    SponsorerPageModule,
+    NotaryPageModule,
+    IonicModule.forRoot(MyApp),
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,11 +41,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    AuthParticipantPage,
+    SponsorerPage,
+    NotaryPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SharedServie,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
