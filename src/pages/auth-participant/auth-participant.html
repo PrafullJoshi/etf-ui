@@ -1,0 +1,75 @@
+<!--
+  Generated template for the AuthParticipantPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Authorized Participant</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+        Name - {{name}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+      <ion-list-header>
+        Security Baskets
+      </ion-list-header>
+    </ion-list>
+  <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          Basket Hash
+        </ion-col>
+        <ion-col col-6>
+            Id
+        </ion-col>
+      </ion-row>
+        <ion-row *ngFor="let basket of baskets">
+          <ion-col col-6>
+              {{basket.hash}}
+            </ion-col>
+            <ion-col col-6>
+                {{basket.id}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+    <ion-list>
+        <ion-list-header>
+          Baskets for ETF Purchase
+        </ion-list-header>
+      </ion-list>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Basket Hash
+          </ion-col>
+          <ion-col col-6>
+              Id
+          </ion-col>
+        </ion-row>
+          <ion-row *ngFor="let basket of baskets">
+            <ion-col col-6>
+                {{basket.hash}}
+              </ion-col>
+              <ion-col col-6>
+                  {{basket.id}}
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+</ion-content>
