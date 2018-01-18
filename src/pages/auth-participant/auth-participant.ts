@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedServie } from '../../shared/shared.service';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 
 
@@ -21,12 +22,14 @@ export class AuthParticipantPage {
 
   name: string;
   baskets: any;
+  basketHash: string;
 
   constructor(
     public loaderController: LoadingController,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public sharedService: SharedServie) {
+    public sharedService: SharedServie,
+    public toastController: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -37,7 +40,7 @@ export class AuthParticipantPage {
   getDisplayName() {
     this.sharedService.getAPName().subscribe(response => {
       this.name = response;
-    })
+    });
   }
 
   refresh() {
@@ -47,6 +50,20 @@ export class AuthParticipantPage {
     loader.present().then(() => {
       loader.dismiss();
     });
+  }
+
+  issueBasket() {
+    this.sharedService.issueBasket(this.basketHash).subscribe(response => {
+      this.name = response;
+      let toast = this.toastController.create({
+        message: "Basket being issued",
+        duration: 3000,
+        position: "bottom"
+      });
+      toast.present();
+    });
+
+    
   }
 
 }

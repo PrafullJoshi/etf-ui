@@ -22,4 +22,10 @@ export class SharedServie {
         return this.http.get(this.apBaseUrl + 'api/info/me');
             
     }
+
+    issueBasket(basketHash): Observable<any> {
+        return this.http.get(this.apBaseUrl + 'api/security-basket/issue?basketIpfsHash='
+            + basketHash + '&party=AuthorizedParticipant');
+            
+    }
 }

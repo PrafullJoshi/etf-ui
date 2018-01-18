@@ -25,12 +25,38 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
-      <ion-list-header>
-        Security Baskets
-      </ion-list-header>
-    </ion-list>
+
   <ion-grid>
+
+      <ion-row>
+          <ion-col col-9>
+              <ion-list>
+                  <ion-item>
+                    <ion-select [(ngModel)]="basketHash" interface="popover" placeholder="Basket Hash">
+                      <ion-option value="nes">NES</ion-option>
+                      <ion-option value="n64">Nintendo64</ion-option>
+                      <ion-option value="ps">PlayStation</ion-option>
+                      <ion-option value="genesis">Sega Genesis</ion-option>
+                      <ion-option value="saturn">Sega Saturn</ion-option>
+                      <ion-option value="snes">SNES</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+          </ion-col>
+          <ion-col col-3>
+              <ion-buttons end>
+                <button ion-button outline icon-only (click)="issueBasket()">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+              </ion-buttons>
+          </ion-col>
+        </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+            SECURITY BASKET
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col col-6>
           Basket Hash
