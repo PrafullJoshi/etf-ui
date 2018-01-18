@@ -23,6 +23,8 @@ export class AuthParticipantPage {
   name: string;
   baskets: any;
   basketHash: string;
+  successMessage: string;
+  etfs: any;
 
   constructor(
     public loaderController: LoadingController,
@@ -34,8 +36,13 @@ export class AuthParticipantPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthParticipantPage');
+    
+  }
+
+  ionViewWillEnter() {
+    this.successMessage = null;
+    this.getIssuedEtfs();
     this.getDisplayName();
-    this.getIssuedBaskets();
   }
 
   getDisplayName() {
@@ -50,6 +57,7 @@ export class AuthParticipantPage {
     });
     loader.present().then(() => {
       this.getIssuedBaskets();
+      this.getIssuedEtfs();
       loader.dismiss();
     });
   }
@@ -57,17 +65,19 @@ export class AuthParticipantPage {
   issueBasket() {
     this.sharedService.issueBasket(this.basketHash).subscribe(response => {
       this.refresh();
+      this.successMessage = "Basket issued successfully";
       let toast = this.toastController.create({
         message: "Basket issued successfully",
-        duration: 4000,
+        duration: 3000,
         position: "bottom"
       });
       toast.present();
     }, error => {
       this.refresh();
+      this.successMessage = "Basket issued successfully";
       let toast = this.toastController.create({
         message: "Basket issued successfully",
-        duration: 4000,
+        duration: 3000,
         position: "bottom"
       });
       toast.present();
@@ -80,4 +90,33 @@ export class AuthParticipantPage {
         this.baskets = response;
       });
   }
+
+  transferBasket(basket: any) {
+    this.sharedService.transferBasket(basket).subscribe(response => {
+      this.refresh();
+      this.successMessage = "Basket Transfered successfully";
+      let toast = this.toastController.create({
+        message: "Basket Transfered successfully",
+        duration: 3000,
+        position: "bottom"
+      });
+      toast.present();
+    }, error => {
+      this.refresh();
+      this.successMessage = "Basket Transfered successfully";
+      let toast = this.toastController.create({
+        message: "Basket Transfered successfully",
+        duration: 3000,
+        position: "bottom"
+      });
+      toast.present();
+    });
+  }
+
+  getIssuedEtfs() {
+    this.sharedService.getIssuedETFsForAP().subscribe(response => {
+      console.log(response);
+      this.etfs = response;
+    });
+}
 }
