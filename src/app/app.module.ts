@@ -18,6 +18,8 @@ import { SponsorerPage } from '../pages/sponsorer/sponsorer';
 import { NotaryPage } from '../pages/notary/notary';
 import { SharedServie } from '../shared/shared.service';
 import {HttpClientModule} from '@angular/common/http';
+import { TrxDataModalPage } from '../pages/trx-data-modal/trx-data-modal';
+import { TrxDataModalPageModule } from '../pages/trx-data-modal/trx-data-modal.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {HttpClientModule} from '@angular/common/http';
     AuthParticipantPageModule,
     SponsorerPageModule,
     NotaryPageModule,
+    TrxDataModalPageModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
   ],
@@ -44,7 +47,8 @@ import {HttpClientModule} from '@angular/common/http';
     TabsPage,
     AuthParticipantPage,
     SponsorerPage,
-    NotaryPage
+    NotaryPage,
+    TrxDataModalPage
   ],
   providers: [
     StatusBar,
