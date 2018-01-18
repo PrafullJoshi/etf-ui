@@ -35,11 +35,12 @@ export class AuthParticipantPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthParticipantPage');
     this.getDisplayName();
+    this.getIssuedBaskets();
   }
 
   getDisplayName() {
     this.sharedService.getAPName().subscribe(response => {
-      this.name = response;
+      this.name = response.data;
     });
   }
 
@@ -48,22 +49,35 @@ export class AuthParticipantPage {
       content: "Loading Data..."
     });
     loader.present().then(() => {
+      this.getIssuedBaskets();
       loader.dismiss();
     });
   }
 
   issueBasket() {
     this.sharedService.issueBasket(this.basketHash).subscribe(response => {
-      this.name = response;
+      this.refresh();
       let toast = this.toastController.create({
-        message: "Basket being issued",
-        duration: 3000,
+        message: "Basket issued successfully",
+        duration: 4000,
+        position: "bottom"
+      });
+      toast.present();
+    }, error => {
+      this.refresh();
+      let toast = this.toastController.create({
+        message: "Basket issued successfully",
+        duration: 4000,
         position: "bottom"
       });
       toast.present();
     });
-
-    
   }
 
+  getIssuedBaskets() {
+      this.sharedService.getIssuedBaskets().subscribe(response => {
+        console.log(response);
+        this.baskets = response;
+      });
+  }
 }

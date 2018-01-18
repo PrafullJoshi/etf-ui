@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
+    <ion-card>
+        <ion-card-content>
+            Name - {{name}}
+        </ion-card-content>
+      </ion-card>
 
+      <ion-list>
+          <ion-list-header>
+            All Participants' Transactions
+          </ion-list-header>
+          <ion-item *ngFor="let data of notaryData" (click)="itemClicked(data)">
+              <ion-icon name="key" item-start></ion-icon>
+              {{data.data.linearId.id}}
+          </ion-item>
+        </ion-list>
 </ion-content>

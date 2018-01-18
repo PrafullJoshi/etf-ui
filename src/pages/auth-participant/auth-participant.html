@@ -67,10 +67,10 @@
       </ion-row>
         <ion-row *ngFor="let basket of baskets">
           <ion-col col-6>
-              {{basket.hash}}
+              {{basket.state.data.basketIpfsHash}}
             </ion-col>
             <ion-col col-6>
-                {{basket.id}}
+              {{basket.state.data.linearId.id}}
             </ion-col>
         </ion-row>
     </ion-grid>

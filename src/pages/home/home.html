@@ -12,4 +12,14 @@
   <p>
     Multiple participants can play role in this application, providing separate access page to each of them.
   </p>
+
+  <ion-list>
+    <ion-list-header>
+      Participants
+    </ion-list-header>
+    <ion-item *ngFor="let peer of participants.data">
+        <ion-icon name="person" item-start></ion-icon>
+        {{peer}}
+    </ion-item>
+  </ion-list>
 </ion-content>
