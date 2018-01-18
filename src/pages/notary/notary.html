@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Notary</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -26,7 +26,7 @@
           </ion-list-header>
           <ion-item *ngFor="let data of notaryData" (click)="itemClicked(data)">
               <ion-icon name="key" item-start></ion-icon>
-              {{data.data.linearId.id}}
+              {{data.constraint.attachmentId}}
           </ion-item>
         </ion-list>
 </ion-content>

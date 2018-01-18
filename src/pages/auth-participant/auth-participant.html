@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Authorized Participant</ion-title>
+    <ion-title>{{name}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="refresh()">
         <ion-icon name="refresh"></ion-icon>
@@ -19,6 +19,11 @@
 
 
 <ion-content padding>
+    <ion-card *ngIf="successMessage" color="secondary">
+        <ion-card-content>
+           {{successMessage}}
+        </ion-card-content>
+      </ion-card>
   <ion-card>
     <ion-card-content>
         Name - {{name}}
@@ -53,49 +58,58 @@
         </ion-row>
 
       <ion-row>
-        <ion-col col-12>
+        <ion-col class="sectionHeader" color="primary" col-12>
             SECURITY BASKET
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col col-6>
+      <ion-row class="header">
+        <ion-col col-2>
           Basket Hash
         </ion-col>
-        <ion-col col-6>
-            Id
+        <ion-col col-8>
+            Transaction Id
         </ion-col>
+        <ion-col col-2>
+            Transfer
+          </ion-col>
       </ion-row>
         <ion-row *ngFor="let basket of baskets">
-          <ion-col col-6>
+          <ion-col col-2>
               {{basket.state.data.basketIpfsHash}}
             </ion-col>
-            <ion-col col-6>
-              {{basket.state.data.linearId.id}}
+            <ion-col col-8>
+              {{basket.ref.txhash}}
             </ion-col>
+            <ion-col col-2>
+                <button ion-button icon-only (click)="transferBasket(basket)">
+                    <ion-icon name="arrow-dropright"></ion-icon>
+                  </button>
+              </ion-col>
         </ion-row>
-    </ion-grid>
-  
-    <ion-list>
-        <ion-list-header>
-          Baskets for ETF Purchase
-        </ion-list-header>
-      </ion-list>
-    <ion-grid>
+        <br>
+
         <ion-row>
-          <ion-col col-6>
-            Basket Hash
-          </ion-col>
-          <ion-col col-6>
-              Id
-          </ion-col>
-        </ion-row>
-          <ion-row *ngFor="let basket of baskets">
-            <ion-col col-6>
-                {{basket.hash}}
-              </ion-col>
-              <ion-col col-6>
-                  {{basket.id}}
-              </ion-col>
+            <ion-col class="sectionHeader" color="primary" col-12>
+                RECEIVED ETFs
+            </ion-col>
           </ion-row>
-      </ion-grid>
+          <ion-row class="header">
+              <ion-col col-9>
+                ETF Name - Code
+              </ion-col>
+              <ion-col col-3>
+                  Quantity
+              </ion-col>
+            </ion-row>
+              <ion-row *ngFor="let etf of etfs">
+                <ion-col col-9>
+                    {{etf.state.data.etfCode}}
+                  </ion-col>
+                  <ion-col col-3>
+                    {{etf.state.data.quantity}}
+                  </ion-col>
+              </ion-row>
+
+    </ion-grid>
+
 </ion-content>
